@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name" translatable="false">News</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="welcome">Welecome in News App</string>
+    <string name="searchhint">أبحث هنا</string>
+    <string name="nav_open" translatable="false">Open</string>
+    <string name="nav_close" translatable="false">Close</string>
+    <string name="settings">الأعدادات</string>
+    <string name="categories">الأقسام</string>
+    <string name="searchBtn">بحث</string>
+    <string name="search">بحث</string>
+    <string name="sports">رياضيات</string>
+    <string name="business">أعمال</string>
+    <string name="science">علوم</string>
+    <string name="technology">تكنولوجيا</string>
+    <string name="searchMessage">ادخل ما تريد البحث عنه</string>
+    <string name="search_result">لاتوجد نتائج</string>
+    <string name="english">إنجليزي</string>
+    <string name="arabic">عربي</string>
+    <string name="dark_mode">مظلم</string>
+    <string name="light_mode">مضئ</string>
+    <string name="language">اللغة</string>
+    <string name="mode">الوضع</string>
+</resources>

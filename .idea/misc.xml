@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/CS/AndroidStudioProjects/News/app/src/main/res/drawable-anydpi/category.xml" value="0.188" />
+        <entry key="..\:/Users/CS/AndroidStudioProjects/News/app/src/main/res/drawable-anydpi/setting.xml" value="0.1" />
+        <entry key="..\:/Users/CS/AndroidStudioProjects/News/app/src/main/res/drawable/bordertextview.xml" value="0.219" />
+        <entry key="..\:/Users/CS/AndroidStudioProjects/News/app/src/main/res/drawable/business_background.xml" value="0.1" />
+        <entry key="..\:/Users/CS/AndroidStudioProjects/News/app/src/main/res/drawable/business_border.xml" value="0.1" />
+        <entry key="..\:/Users/CS/AndroidStudioProjects/News/app/src/main/res/drawable/business_toolbar.xml" value="0.1" />
+        <entry key="..\:/Users/CS/AndroidStudioProjects/News/app/src/main/res/drawable/ic_launcher_background.xml" value="0.219" />
+        <entry key="..\:/Users/CS/AndroidStudioProjects/News/app/src/main/res/drawable/science_background.xml" value="0.1" />
+        <entry key="..\:/Users/CS/AndroidStudioProjects/News/app/src/main/res/drawable/science_border.xml" value="0.1" />
+        <entry key="..\:/Users/CS/AndroidStudioProjects/News/app/src/main/res/drawable/science_toolbar.xml" value="0.1" />
+        <entry key="..\:/Users/CS/AndroidStudioProjects/News/app/src/main/res/drawable/spinner_background.xml" value="0.1" />
+        <entry key="..\:/Users/CS/AndroidStudioProjects/News/app/src/main/res/drawable/sports_background.xml" value="0.1" />
+        <entry key="..\:/Users/CS/AndroidStudioProjects/News/app/src/main/res/drawable/sports_border.xml" value="0.1" />
+        <entry key="..\:/Users/CS/AndroidStudioProjects/News/app/src/main/res/drawable/sports_toobar.xml" value="0.1355" />
+        <entry key="..\:/Users/CS/AndroidStudioProjects/News/app/src/main/res/drawable/technology_background.xml" value="0.1" />
+        <entry key="..\:/Users/CS/AndroidStudioProjects/News/app/src/main/res/drawable/technology_border.xml" value="0.1" />
+        <entry key="..\:/Users/CS/AndroidStudioProjects/News/app/src/main/res/drawable/technology_toolbar.xml" value="0.1" />
+        <entry key="..\:/Users/CS/AndroidStudioProjects/News/app/src/main/res/drawable/textbackground.xml" value="0.1" />
+        <entry key="..\:/Users/CS/AndroidStudioProjects/News/app/src/main/res/drawable/toolbar.xml" value="0.219" />
+        <entry key="..\:/Users/CS/AndroidStudioProjects/News/app/src/main/res/drawable/toolbar_sports.xml" value="0.1" />
+        <entry key="..\:/Users/CS/AndroidStudioProjects/News/app/src/main/res/layout/activity_main.xml" value="0.23645833333333333" />
+        <entry key="..\:/Users/CS/AndroidStudioProjects/News/app/src/main/res/layout/article_model.xml" value="0.1" />
+        <entry key="..\:/Users/CS/AndroidStudioProjects/News/app/src/main/res/layout/articlemodel.xml" value="0.23489583333333333" />
+        <entry key="..\:/Users/CS/AndroidStudioProjects/News/app/src/main/res/layout/fragment_categories.xml" value="0.1" />
+        <entry key="..\:/Users/CS/AndroidStudioProjects/News/app/src/main/res/layout/fragment_face.xml" value="0.264" />
+        <entry key="..\:/Users/CS/AndroidStudioProjects/News/app/src/main/res/layout/fragment_header.xml" value="0.1" />
+        <entry key="..\:/Users/CS/AndroidStudioProjects/News/app/src/main/res/layout/fragment_home.xml" value="0.1" />
+        <entry key="..\:/Users/CS/AndroidStudioProjects/News/app/src/main/res/layout/fragment_post.xml" value="0.22395833333333334" />
+        <entry key="..\:/Users/CS/AndroidStudioProjects/News/app/src/main/res/layout/fragment_search.xml" value="0.1" />
+        <entry key="..\:/Users/CS/AndroidStudioProjects/News/app/src/main/res/layout/fragment_setting.xml" value="0.264" />
+        <entry key="..\:/Users/CS/AndroidStudioProjects/News/app/src/main/res/layout/header_layout.xml" value="0.1" />
+        <entry key="..\:/Users/CS/AndroidStudioProjects/News/app/src/main/res/layout/sources_model.xml" value="0.23333333333333334" />
+        <entry key="..\:/Users/CS/AndroidStudioProjects/News/app/src/main/res/menu/main_menu.xml" value="0.1" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

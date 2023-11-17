@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigate"
+    app:startDestination="@id/face">
+
+    <fragment
+        android:id="@+id/face"
+        android:name="com.example.news.ui.ui.Face"
+        android:label="fragment_face"
+        tools:layout="@layout/fragment_face" >
+        <action
+            android:id="@+id/action_face_to_home2"
+            app:destination="@id/home2" />
+        <action
+            android:id="@+id/action_face_to_categories"
+            app:destination="@id/categories" />
+    </fragment>
+    <fragment
+        android:id="@+id/home2"
+        android:name="com.example.news.ui.ui.Home"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_home2_to_post"
+            app:destination="@id/post" />
+        <action
+            android:id="@+id/action_home2_to_search"
+            app:destination="@id/search" />
+        <action
+            android:id="@+id/action_home2_to_categories"
+            app:destination="@id/categories" />
+        <action
+            android:id="@+id/action_home2_to_setting"
+            app:destination="@id/setting" />
+    </fragment>
+    <fragment
+        android:id="@+id/categories"
+        android:name="com.example.news.ui.ui.Categories"
+        android:label="Categories" >
+        <action
+            android:id="@+id/action_categories_to_home2"
+            app:destination="@id/home2" />
+    </fragment>
+    <fragment
+        android:id="@+id/post"
+        android:name="com.example.news.ui.ui.Post"
+        android:label="fragment_post"
+        tools:layout="@layout/fragment_post" />
+    <fragment
+        android:id="@+id/search"
+        android:name="com.example.news.ui.ui.Search"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/action_search_to_post"
+            app:destination="@id/post" />
+    </fragment>
+    <fragment
+        android:id="@+id/setting"
+        android:name="com.example.news.ui.ui.Settings"
+        android:label="fragment_setting"
+        tools:layout="@layout/fragment_setting" />
+</navigation>
