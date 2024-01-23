@@ -1,6 +1,5 @@
 package com.example.news.ui.ui
 
-import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.View
@@ -15,14 +14,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.news.R
 import com.example.news.databinding.FragmentSearchBinding
 import com.example.news.ui.APIs.PostComponents
-import com.example.news.ui.APIs.PostsAdapter
-import com.example.news.ui.APIs.SourcesViewModel
+import com.example.news.ui.APIs.ArticlesAdapter
+import com.example.news.ui.APIs.ViewModel
 import kotlinx.coroutines.launch
 
 class Search : Fragment(R.layout.fragment_search) {
     private lateinit var binding: FragmentSearchBinding
     private lateinit var navController: NavController
-    private val viewModel = SourcesViewModel()
+    private val viewModel = ViewModel()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentSearchBinding.bind(view)
@@ -37,7 +36,6 @@ class Search : Fragment(R.layout.fragment_search) {
             {
                 if(binding.searchView.query.isNotEmpty()) {
                     search(binding.searchView.query.toString())
-                    binding.qPhoto.isVisible=false
                 }
                 else
                     Toast.makeText(requireContext(),getString(R.string.searchMessage),Toast.LENGTH_LONG).show()
@@ -51,47 +49,39 @@ class Search : Fragment(R.layout.fragment_search) {
         {
             "Sports"-> {
                 binding.toolbar.setBackgroundResource(R.drawable.sports_toobar)
-                binding.searchView.setBackgroundResource(R.drawable.sports_border)
             }
             "رياضيات"-> {
                 binding.toolbar.setBackgroundResource(R.drawable.sports_toobar)
-                binding.searchView.setBackgroundResource(R.drawable.sports_border)
             }
             "Business"-> {
                 binding.toolbar.setBackgroundResource(R.drawable.business_toolbar)
-                binding.searchView.setBackgroundResource(R.drawable.business_border)
             }
             "أعمال"-> {
                 binding.toolbar.setBackgroundResource(R.drawable.business_toolbar)
-                binding.searchView.setBackgroundResource(R.drawable.business_border)
             }
             "Science"-> {
                 binding.toolbar.setBackgroundResource(R.drawable.science_toolbar)
-                binding.searchView.setBackgroundResource(R.drawable.science_border)
             }
             "علوم"-> {
                 binding.toolbar.setBackgroundResource(R.drawable.science_toolbar)
-                binding.searchView.setBackgroundResource(R.drawable.science_border)
             }
             "Technology"-> {
                 binding.toolbar.setBackgroundResource(R.drawable.technology_toolbar)
-                binding.searchView.setBackgroundResource(R.drawable.technology_border)
             }
             "تكنولوجيا"-> {
                 binding.toolbar.setBackgroundResource(R.drawable.technology_toolbar)
-                binding.searchView.setBackgroundResource(R.drawable.technology_border)
             }
         }
 
     }
-    fun search(q:String)
+    fun search(endPoint:String)
     {
-        viewModel.Results(q).getResult().observe(viewLifecycleOwner, Observer { results->
+        viewModel.getResult(endPoint).observe(viewLifecycleOwner, Observer { results->
            if(results.articles.size>0) {
-               val adapter = PostsAdapter(results.articles)
+               val adapter = ArticlesAdapter(results.articles)
                binding.resultsRecycler.layoutManager = LinearLayoutManager(requireContext())
                binding.resultsRecycler.adapter = adapter
-               adapter.setOnClickListener(object : PostsAdapter.OnClickListener {
+               adapter.setOnClickListener(object : ArticlesAdapter.OnClickListener {
                    override fun onClick(position: Int, model: PostComponents) {
 
                        val url = bundleOf("url" to results.articles[position].url)

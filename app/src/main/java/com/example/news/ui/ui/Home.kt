@@ -4,48 +4,50 @@ package com.example.news.ui.ui
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
+import android.view.ViewGroup
+import android.view.ViewGroup.MarginLayoutParams
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.os.bundleOf
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.news.R
 import com.example.news.databinding.FragmentHomeBinding
 import com.example.news.ui.APIs.*
 import com.example.news.ui.ui.Categories.Companion.category
 import com.example.news.ui.ui.Categories.Companion.color
+import com.google.android.material.tabs.TabLayout
 import kotlinx.coroutines.launch
 
 
 class Home : Fragment(R.layout.fragment_home) {
     private lateinit var binding: FragmentHomeBinding
     private lateinit var navController: NavController
-    private val viewModel = SourcesViewModel()
+    private val viewModel = ViewModel()
     lateinit var actionBarDrawerToggle: ActionBarDrawerToggle
 
     companion object {
-        var selectedItems = ArrayList<Boolean>()
         var sourceId = ""
-        var language="en"
-        var categoryName=""
+        var language = "en"
+        var categoryName = ""
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentHomeBinding.bind(view)
         navController = Navigation.findNavController(view)
-
         val activity = activity as MainActivity
-        activity.supportActionBar?.show()
-        activity.supportActionBar?.title = category
+        activity.supportActionBar?.hide()
+        if (category != "") {
+            binding.title.setText(category)
+            binding.startImage.isVisible = false
+        }
 
         lifecycleScope.launch {
             setColor()
@@ -62,7 +64,10 @@ class Home : Fragment(R.layout.fragment_home) {
             actionBarDrawerToggle.syncState()
 
             // to make the Navigation drawer icon always appear on the action bar
-            activity.supportActionBar?.setDisplayHomeAsUpEnabled(true)
+            //activity.supportActionBar?.setDisplayHomeAsUpEnabled(false)
+            binding.menu.setOnClickListener() {
+                binding.drawerLayout.open()
+            }
             binding.navigation.setNavigationItemSelectedListener { menuItem ->
                 // Handle menu item selected
                 when (menuItem.itemId) {
@@ -77,39 +82,16 @@ class Home : Fragment(R.layout.fragment_home) {
         }
 
         lifecycleScope.launch {
-            if (categoryName != "") {
-                viewModel.sources(categoryName).getSources()
+            if (category != "") {
+                viewModel.getSources(categoryName)
                     .observe(viewLifecycleOwner, Observer { sources ->
-
-                        for (indx in sources.sources.indices) {
-                            selectedItems.add(false)
-                        }
                         if (sources.sources.size > 0) {
-
-                            for (indx in selectedItems.indices)
-                                selectedItems[indx] = false
-                            selectedItems[0] = true
                             sourceId = sources.sources[0].id.toString()
                             displaySources(sources.sources)
-                            viewModel.Posts(sourceId).getPosts()
-                                .observe(viewLifecycleOwner, Observer { posts ->
-                                    val adapter = PostsAdapter(posts.articles)
-                                    binding.ArticleRecycler.layoutManager =
-                                        LinearLayoutManager(requireContext())
-                                    binding.ArticleRecycler.adapter = adapter
-                                    adapter.setOnClickListener(object :
-                                        PostsAdapter.OnClickListener {
-                                        override fun onClick(position: Int, model: PostComponents) {
-                                            val url =
-                                                bundleOf("url" to posts.articles[position].url)
-                                            navController.navigate(R.id.action_home2_to_post, url)
-                                        }
-                                    })
-                                })
                         } else {
                             Toast.makeText(
                                 requireContext(),
-                               getString(R.string.search_result) ,
+                                getString(R.string.search_result),
                                 Toast.LENGTH_LONG
                             ).show()
                         }
@@ -119,23 +101,29 @@ class Home : Fragment(R.layout.fragment_home) {
     }
 
     fun displaySources(sourcesList: ArrayList<SourceComponents>) {
-        val adapter = SourcesAdapter(sourcesList)
-        binding.sourcesRecycler.layoutManager =
-            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-        binding.sourcesRecycler.adapter = adapter
-        adapter.setOnClickListener(object : SourcesAdapter.OnClickListener {
-            override fun onClick(position: Int, model: SourceComponents) {
-                //change articles value
-                sourceId = sourcesList[position].id.toString()
-                viewModel.Posts(sourceId).getPosts()
-                for (indx in selectedItems.indices)
-                    selectedItems[indx] = false
-                selectedItems[position] = true
-                adapter.notifyDataSetChanged()
+        val adapter = SourcesAdapter(activity!!.supportFragmentManager)
+        for (item in sourcesList) {
+            adapter.addFragment(Articles(), item.name.toString())
+        }
+        binding.viewPager.adapter = adapter
+        binding.tabLayout.setupWithViewPager(binding.viewPager)
+        setUnselectedItemColor(sourcesList.size)
+        binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+                val position = tab!!.position
+                sourceId = sourcesList[position!!].id.toString()
+                viewModel.getPosts(sourceId)
+                setSelectedItemColor()
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab?) {
+                setUnselectedItemColor(sourcesList.size)
+            }
+
+            override fun onTabReselected(tab: TabLayout.Tab?) {
             }
         })
     }
-
     fun setColor() {
         val header = binding.navigation.getHeaderView(0)
         val sideNavLayout =
@@ -150,6 +138,32 @@ class Home : Fragment(R.layout.fragment_home) {
             activity.supportActionBar?.setBackgroundDrawable(ColorDrawable(Color.parseColor(color)))
             sideNavLayout.setBackgroundColor((Color.parseColor(color)))
         }
+        when (Categories.category) {
+            "Sports" -> {
+                binding.toolbar.setBackgroundResource(R.drawable.sports_toobar)
+            }
+            "رياضيات" -> {
+                binding.toolbar.setBackgroundResource(R.drawable.sports_toobar)
+            }
+            "Business" -> {
+                binding.toolbar.setBackgroundResource(R.drawable.business_toolbar)
+            }
+            "أعمال" -> {
+                binding.toolbar.setBackgroundResource(R.drawable.business_toolbar)
+            }
+            "Science" -> {
+                binding.toolbar.setBackgroundResource(R.drawable.science_toolbar)
+            }
+            "علوم" -> {
+                binding.toolbar.setBackgroundResource(R.drawable.science_toolbar)
+            }
+            "Technology" -> {
+                binding.toolbar.setBackgroundResource(R.drawable.technology_toolbar)
+            }
+            "تكنولوجيا" -> {
+                binding.toolbar.setBackgroundResource(R.drawable.technology_toolbar)
+            }
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -162,6 +176,111 @@ class Home : Fragment(R.layout.fragment_home) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
+    }
+
+    fun setSelectedItemColor() {
+        when (category) {
+            "Sports" -> {
+                binding.tabLayout.setSelectedTabIndicator(R.drawable.sports_background)
+                binding.tabLayout.setTabTextColors(
+                    Color.parseColor(color),
+                    Color.parseColor("#FFFFFFFF")
+                )
+            }
+            "رياضيات" -> {
+                binding.tabLayout.setSelectedTabIndicator(R.drawable.sports_background)
+                binding.tabLayout.setTabTextColors(
+                    Color.parseColor(color),
+                    Color.parseColor("#FFFFFFFF")
+                )
+            }
+            "Business" -> {
+                binding.tabLayout.setSelectedTabIndicator(R.drawable.business_background)
+                binding.tabLayout.setTabTextColors(
+                    Color.parseColor(color),
+                    Color.parseColor("#FFFFFFFF")
+                )
+            }
+            "اعمال" -> {
+                binding.tabLayout.setSelectedTabIndicator(R.drawable.business_background)
+                binding.tabLayout.setTabTextColors(
+                    Color.parseColor(color),
+                    Color.parseColor("#FFFFFFFF")
+                )
+            }
+            "Science" -> {
+                binding.tabLayout.setSelectedTabIndicator(R.drawable.science_background)
+                binding.tabLayout.setTabTextColors(
+                    Color.parseColor(color),
+                    Color.parseColor("#FFFFFFFF")
+                )
+            }
+            "علوم" -> {
+                binding.tabLayout.setSelectedTabIndicator(R.drawable.science_background)
+                binding.tabLayout.setTabTextColors(
+                    Color.parseColor(color),
+                    Color.parseColor("#FFFFFFFF")
+                )
+            }
+            "Technology" -> {
+                binding.tabLayout.setSelectedTabIndicator(R.drawable.technology_background)
+                binding.tabLayout.setTabTextColors(
+                    Color.parseColor(color),
+                    Color.parseColor("#FFFFFFFF")
+                )
+            }
+            "تكنولوجيا" -> {
+                binding.tabLayout.setSelectedTabIndicator(R.drawable.technology_background)
+                binding.tabLayout.setTabTextColors(
+                    Color.parseColor(color),
+                    Color.parseColor("#FFFFFFFF")
+                )
+            }
+        }
+    }
+
+    fun setUnselectedItemColor(size: Int) {
+        when (category) {
+            "Sports" -> {
+                setShape(R.drawable.sports_border, size)
+            }
+            "رياضيات" -> {
+                setShape(R.drawable.sports_border, size)
+            }
+            "Business" -> {
+                setShape(R.drawable.business_border, size)
+            }
+            "أعمال" -> {
+                setShape(R.drawable.business_border, size)
+            }
+            "Science" -> {
+                setShape(R.drawable.science_border, size)
+            }
+            "علوم" -> {
+                setShape(R.drawable.science_border, size)
+            }
+            "Technology" -> {
+                setShape(R.drawable.technology_border, size)
+            }
+            "تكنولوجيا" -> {
+                setShape(R.drawable.technology_border, size)
+            }
+
+        }
+    }
+    fun setShape(shape: Int, size: Int) {
+        for (indx in 0..size - 1) {
+            val tab: TabLayout.Tab? = binding.tabLayout.getTabAt(indx)
+            tab?.view?.background = resources.getDrawable(shape)
+            tab?.view?.setPadding(50, 0, 50, 0)
+            binding.tabLayout.setTabTextColors(Color.parseColor(color), Color.parseColor(color))
+        }
+        for (i in 0 until binding.tabLayout.getTabCount()) {
+            val tab = (binding.tabLayout.getChildAt(0) as ViewGroup).getChildAt(i)
+            val p = tab.layoutParams as MarginLayoutParams
+            p.setMargins(0, 0, 20, 0)
+            tab.requestLayout()
+        }
     }
 
 }

@@ -45,7 +45,7 @@
     </fragment>
     <fragment
         android:id="@+id/post"
-        android:name="com.example.news.ui.ui.Post"
+        android:name="com.example.news.ui.ui.SelectedArticle"
         android:label="fragment_post"
         tools:layout="@layout/fragment_post" />
     <fragment
@@ -62,4 +62,13 @@
         android:name="com.example.news.ui.ui.Settings"
         android:label="fragment_setting"
         tools:layout="@layout/fragment_setting" />
+    <fragment
+        android:id="@+id/sourcesList"
+        android:name="com.example.news.ui.ui.Articles"
+        android:label="fragment_sources_list"
+        tools:layout="@layout/fragment_sources_list" >
+        <action
+            android:id="@+id/action_sourcesList_to_post"
+            app:destination="@id/post" />
+    </fragment>
 </navigation>

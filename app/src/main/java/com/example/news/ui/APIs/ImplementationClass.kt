@@ -12,13 +12,13 @@ class ImplementationClass {
         postInterface = retrofit.create(Interface::class.java)
     }
 
-    fun getSources(articleName:String): retrofit2.Call<Sources> {
+    fun getSources(articleName:String): retrofit2.Call<SourcesDataClass> {
         return postInterface.getSources(articleName,"d345bd7c207246288e20202fcd1aab03")
     }
-    fun getArticles(sourceId:String): retrofit2.Call<Posts> {
+    fun getArticles(sourceId:String): retrofit2.Call<PostDataClass> {
         return postInterface.getArticles(sourceId,"d345bd7c207246288e20202fcd1aab03")
     }
-    fun getResultsOfSearch(q:String): retrofit2.Call<Posts> {
+    fun getResultsOfSearch(q:String): retrofit2.Call<PostDataClass> {
         return postInterface.getResultsOfSearch("d345bd7c207246288e20202fcd1aab03","popularity",q)
     }
 }

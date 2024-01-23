@@ -1,6 +1,7 @@
 package com.example.news.ui.ui
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.content.res.Configuration
 import android.content.res.Resources
@@ -11,14 +12,18 @@ import android.view.View
 import android.view.Window
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.example.news.R
 import com.example.news.databinding.FragmentSettingBinding
 import com.example.news.ui.ui.Home.Companion.language
 import java.util.*
+import kotlin.concurrent.fixedRateTimer
 
 
 class Settings : Fragment(R.layout.fragment_setting), AdapterView.OnItemSelectedListener {
@@ -56,10 +61,8 @@ class Settings : Fragment(R.layout.fragment_setting), AdapterView.OnItemSelected
                     val config = Configuration()
                     config.locale = locale
                     resources.updateConfiguration(config, resources.displayMetrics)
+                    //refreshFragment(requireContext())
 
-//                    val refresh = Intent(requireContext(), R.id.setting_fr::class.java)
-//                    startActivity(refresh)
-//                   finish()
                 } else {
                     language = "en"
                     val locale = Locale("en")
@@ -67,70 +70,82 @@ class Settings : Fragment(R.layout.fragment_setting), AdapterView.OnItemSelected
                     val config = Configuration()
                     config.locale = locale
                     resources.updateConfiguration(config, resources.displayMetrics)
-
-//                    val refresh = Intent(requireContext(), R.id.setting_fr::class.java)
-//                    startActivity(refresh)
-//                    finish()
                 }
             }
-                R.id.modeSpinner->{
-                    if (modeOptions[position] == "Dark Mode" || modeOptions[position] == "مظلم")
-                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-                    else
-                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-                }
+            R.id.modeSpinner -> {
+                if (modeOptions[position] == "Dark Mode" || modeOptions[position] == "مظلم")
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                else
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
             }
-        }
-        override fun onNothingSelected(p0: AdapterView<*>?) {
-
-        }
-
-        fun setLanguageOptions() {
-
-            binding.languageSpinner.onItemSelectedListener = this
-
-            val adapter = ArrayAdapter<String>(
-                requireContext(),
-                android.R.layout.simple_spinner_item,
-                languageOptions
-            )
-
-
-            adapter.setDropDownViewResource(
-                android.R.layout.simple_spinner_dropdown_item
-            )
-
-            binding.languageSpinner.adapter = adapter
-        }
-
-        fun setModeOptions() {
-            binding.modeSpinner.onItemSelectedListener = this
-
-            val adapter = ArrayAdapter<String>(
-                requireContext(),
-                android.R.layout.simple_spinner_item,
-                modeOptions
-            )
-
-
-            adapter.setDropDownViewResource(
-                android.R.layout.simple_spinner_dropdown_item
-            )
-
-            binding.modeSpinner.adapter = adapter
-        }
-
-        fun setColor() {
-            when (Categories.category) {
-                "Sports" -> binding.toolbar.setBackgroundResource(R.drawable.sports_toobar)
-                "رياضيات" -> binding.toolbar.setBackgroundResource(R.drawable.sports_toobar)
-                "Business" -> binding.toolbar.setBackgroundResource(R.drawable.business_toolbar)
-                "أعمال" -> binding.toolbar.setBackgroundResource(R.drawable.business_toolbar)
-                "Science" -> binding.toolbar.setBackgroundResource(R.drawable.science_toolbar)
-                "علوم" -> binding.toolbar.setBackgroundResource(R.drawable.science_toolbar)
-                "Technology" -> binding.toolbar.setBackgroundResource(R.drawable.technology_toolbar)
-                "تكنولوجي" -> binding.toolbar.setBackgroundResource(R.drawable.technology_toolbar)
-            }
-
         }
     }
+
+    override fun onNothingSelected(p0: AdapterView<*>?) {
+
+    }
+
+    fun setLanguageOptions() {
+
+        binding.languageSpinner.onItemSelectedListener = this
+
+        val adapter = ArrayAdapter<String>(
+            requireContext(),
+            android.R.layout.simple_spinner_item,
+            languageOptions
+        )
+
+
+        adapter.setDropDownViewResource(
+            android.R.layout.simple_spinner_dropdown_item
+        )
+
+        binding.languageSpinner.adapter = adapter
+    }
+
+    fun setModeOptions() {
+        binding.modeSpinner.onItemSelectedListener = this
+
+        val adapter = ArrayAdapter<String>(
+            requireContext(),
+            android.R.layout.simple_spinner_item,
+            modeOptions
+        )
+
+
+        adapter.setDropDownViewResource(
+            android.R.layout.simple_spinner_dropdown_item
+        )
+
+        binding.modeSpinner.adapter = adapter
+    }
+
+    fun setColor() {
+        when (Categories.category) {
+            "Sports" -> binding.toolbar.setBackgroundResource(R.drawable.sports_toobar)
+            "رياضيات" -> binding.toolbar.setBackgroundResource(R.drawable.sports_toobar)
+            "Business" -> binding.toolbar.setBackgroundResource(R.drawable.business_toolbar)
+            "أعمال" -> binding.toolbar.setBackgroundResource(R.drawable.business_toolbar)
+            "Science" -> binding.toolbar.setBackgroundResource(R.drawable.science_toolbar)
+            "علوم" -> binding.toolbar.setBackgroundResource(R.drawable.science_toolbar)
+            "Technology" -> binding.toolbar.setBackgroundResource(R.drawable.technology_toolbar)
+            "تكنولوجي" -> binding.toolbar.setBackgroundResource(R.drawable.technology_toolbar)
+        }
+
+    }
+
+    fun refreshFragment(context: Context) {
+        context?.let {
+            var fragmentManager = (context as? AppCompatActivity)?.supportFragmentManager
+            fragmentManager?.let {
+                val currentFragment = fragmentManager.findFragmentById(R.id.setting_fr)
+                currentFragment?.let {
+                    val fragmentTransaction = fragmentManager.beginTransaction()
+                    fragmentTransaction.detach(it)
+                    fragmentTransaction.attach(it)
+                    fragmentTransaction.commit()
+                }
+            }
+        }
+    }
+}

@@ -12,7 +12,7 @@
         android:padding="@dimen/_5sdp"
         android:textColor="#2E7D32"
         android:textStyle="bold"
-        android:background="@drawable/bordertextview"
+        android:background="@drawable/searchview_lightbackground"
         android:text="TextView"
         tools:layout_editor_absoluteX="36dp"
         tools:layout_editor_absoluteY="55dp" />
