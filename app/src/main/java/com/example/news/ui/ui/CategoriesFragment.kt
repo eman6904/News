@@ -1,24 +1,16 @@
 package com.example.news.ui.ui
 
 import android.os.Bundle
-import android.provider.Settings
-import android.provider.Settings.Global.getString
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import android.widget.LinearLayout
-import androidx.appcompat.app.ActionBarDrawerToggle
-import androidx.core.os.bundleOf
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import com.example.news.R
 import com.example.news.databinding.FragmentCategoriesBinding
-import com.example.news.databinding.FragmentFaceBinding
-import com.example.news.ui.ui.Home.Companion.categoryName
+import com.example.news.ui.ui.HomeFragment.Companion.categoryName
 
 
-class Categories : Fragment(R.layout.fragment_categories) {
+class CategoriesFragment : Fragment(R.layout.fragment_categories) {
     private lateinit var binding: FragmentCategoriesBinding
     private lateinit var navController: NavController
     companion object{
@@ -55,7 +47,7 @@ class Categories : Fragment(R.layout.fragment_categories) {
 
             binding.toolbar.setBackgroundResource(R.drawable.science_toolbar)
             category=getString(R.string.science)
-            color="#283593"
+            color="#7E2EAF"
             categoryName="science"
             navController.navigate(R.id.action_categories_to_home2)
         }
@@ -71,16 +63,13 @@ class Categories : Fragment(R.layout.fragment_categories) {
     }
     fun setColor()
     {
-        when(Categories.category)
+        when(CategoriesFragment.category)
         {
-            "Sports"-> binding.toolbar.setBackgroundResource(R.drawable.sports_toobar)
-            "رياضيات"-> binding.toolbar.setBackgroundResource(R.drawable.sports_toobar)
-            "Business"-> binding.toolbar.setBackgroundResource(R.drawable.business_toolbar)
-            "أعمال"-> binding.toolbar.setBackgroundResource(R.drawable.business_toolbar)
-            "Science"->  binding.toolbar.setBackgroundResource(R.drawable.science_toolbar)
-            "علوم"->  binding.toolbar.setBackgroundResource(R.drawable.science_toolbar)
-            "Technology"-> binding.toolbar.setBackgroundResource(R.drawable.technology_toolbar)
-            "تكنولوجي"-> binding.toolbar.setBackgroundResource(R.drawable.technology_toolbar)
+            "Sports","رياضة"-> binding.toolbar.setBackgroundResource(R.drawable.sports_toobar)
+            "Business","أعمال"-> binding.toolbar.setBackgroundResource(R.drawable.business_toolbar)
+            "Science","علوم"->  binding.toolbar.setBackgroundResource(R.drawable.science_toolbar)
+            "Technology","تكنولوجي"-> binding.toolbar.setBackgroundResource(R.drawable.technology_toolbar)
+
         }
 
     }

@@ -13,10 +13,10 @@ import com.example.news.databinding.FragmentSourcesListBinding
 import com.example.news.ui.APIs.PostComponents
 import com.example.news.ui.APIs.ArticlesAdapter
 import com.example.news.ui.APIs.ViewModel
-import com.example.news.ui.ui.Home.Companion.sourceId
+import com.example.news.ui.ui.HomeFragment.Companion.sourceId
 
 
-class Articles() : Fragment(R.layout.fragment_sources_list) {
+class GetPostsFragment() : Fragment(R.layout.fragment_sources_list) {
     private lateinit var binding: FragmentSourcesListBinding
     private lateinit var navController: NavController
     private val viewModel = ViewModel()

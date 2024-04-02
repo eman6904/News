@@ -5,7 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.View
 import android.widget.Toast
 import androidx.core.os.bundleOf
-import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavController
@@ -16,9 +15,10 @@ import com.example.news.databinding.FragmentSearchBinding
 import com.example.news.ui.APIs.PostComponents
 import com.example.news.ui.APIs.ArticlesAdapter
 import com.example.news.ui.APIs.ViewModel
+import com.example.news.ui.ui.CategoriesFragment.Companion.category
 import kotlinx.coroutines.launch
 
-class Search : Fragment(R.layout.fragment_search) {
+class SearchFragment : Fragment(R.layout.fragment_search) {
     private lateinit var binding: FragmentSearchBinding
     private lateinit var navController: NavController
     private val viewModel = ViewModel()
@@ -45,30 +45,18 @@ class Search : Fragment(R.layout.fragment_search) {
     }
     fun setColor()
     {
-        when(Categories.category)
+        when(CategoriesFragment.category)
         {
-            "Sports"-> {
+            "Sports","رياضة"-> {
                 binding.toolbar.setBackgroundResource(R.drawable.sports_toobar)
             }
-            "رياضيات"-> {
-                binding.toolbar.setBackgroundResource(R.drawable.sports_toobar)
-            }
-            "Business"-> {
+            "Business","أعمال"-> {
                 binding.toolbar.setBackgroundResource(R.drawable.business_toolbar)
             }
-            "أعمال"-> {
-                binding.toolbar.setBackgroundResource(R.drawable.business_toolbar)
-            }
-            "Science"-> {
+            "Science","علوم"-> {
                 binding.toolbar.setBackgroundResource(R.drawable.science_toolbar)
             }
-            "علوم"-> {
-                binding.toolbar.setBackgroundResource(R.drawable.science_toolbar)
-            }
-            "Technology"-> {
-                binding.toolbar.setBackgroundResource(R.drawable.technology_toolbar)
-            }
-            "تكنولوجيا"-> {
+            "Technology", "تكنولوجيا"-> {
                 binding.toolbar.setBackgroundResource(R.drawable.technology_toolbar)
             }
         }

@@ -20,13 +20,14 @@ import androidx.navigation.Navigation
 import com.example.news.R
 import com.example.news.databinding.FragmentHomeBinding
 import com.example.news.ui.APIs.*
-import com.example.news.ui.ui.Categories.Companion.category
-import com.example.news.ui.ui.Categories.Companion.color
+import com.example.news.ui.ui.CategoriesFragment.Companion.category
+import com.example.news.ui.ui.CategoriesFragment.Companion.color
 import com.google.android.material.tabs.TabLayout
 import kotlinx.coroutines.launch
 
 
-class Home : Fragment(R.layout.fragment_home) {
+class HomeFragment : Fragment(R.layout.fragment_home) {
+
     private lateinit var binding: FragmentHomeBinding
     private lateinit var navController: NavController
     private val viewModel = ViewModel()
@@ -44,6 +45,7 @@ class Home : Fragment(R.layout.fragment_home) {
         navController = Navigation.findNavController(view)
         val activity = activity as MainActivity
         activity.supportActionBar?.hide()
+
         if (category != "") {
             binding.title.setText(category)
             binding.startImage.isVisible = false
@@ -103,7 +105,7 @@ class Home : Fragment(R.layout.fragment_home) {
     fun displaySources(sourcesList: ArrayList<SourceComponents>) {
         val adapter = SourcesAdapter(activity!!.supportFragmentManager)
         for (item in sourcesList) {
-            adapter.addFragment(Articles(), item.name.toString())
+            adapter.addFragment(GetPostsFragment(), item.name.toString())
         }
         binding.viewPager.adapter = adapter
         binding.tabLayout.setupWithViewPager(binding.viewPager)
@@ -138,29 +140,17 @@ class Home : Fragment(R.layout.fragment_home) {
             activity.supportActionBar?.setBackgroundDrawable(ColorDrawable(Color.parseColor(color)))
             sideNavLayout.setBackgroundColor((Color.parseColor(color)))
         }
-        when (Categories.category) {
-            "Sports" -> {
+        when (CategoriesFragment.category) {
+            "Sports","رياضة" -> {
                 binding.toolbar.setBackgroundResource(R.drawable.sports_toobar)
             }
-            "رياضيات" -> {
-                binding.toolbar.setBackgroundResource(R.drawable.sports_toobar)
-            }
-            "Business" -> {
+            "Business","أعمال" -> {
                 binding.toolbar.setBackgroundResource(R.drawable.business_toolbar)
             }
-            "أعمال" -> {
-                binding.toolbar.setBackgroundResource(R.drawable.business_toolbar)
-            }
-            "Science" -> {
+            "Science","علوم" -> {
                 binding.toolbar.setBackgroundResource(R.drawable.science_toolbar)
             }
-            "علوم" -> {
-                binding.toolbar.setBackgroundResource(R.drawable.science_toolbar)
-            }
-            "Technology" -> {
-                binding.toolbar.setBackgroundResource(R.drawable.technology_toolbar)
-            }
-            "تكنولوجيا" -> {
+            "Technology","تكنولوجيا" -> {
                 binding.toolbar.setBackgroundResource(R.drawable.technology_toolbar)
             }
         }
@@ -180,56 +170,28 @@ class Home : Fragment(R.layout.fragment_home) {
 
     fun setSelectedItemColor() {
         when (category) {
-            "Sports" -> {
+            "Sports","رياضة" -> {
                 binding.tabLayout.setSelectedTabIndicator(R.drawable.sports_background)
                 binding.tabLayout.setTabTextColors(
                     Color.parseColor(color),
                     Color.parseColor("#FFFFFFFF")
                 )
             }
-            "رياضيات" -> {
-                binding.tabLayout.setSelectedTabIndicator(R.drawable.sports_background)
-                binding.tabLayout.setTabTextColors(
-                    Color.parseColor(color),
-                    Color.parseColor("#FFFFFFFF")
-                )
-            }
-            "Business" -> {
+            "Business","اعمال"-> {
                 binding.tabLayout.setSelectedTabIndicator(R.drawable.business_background)
                 binding.tabLayout.setTabTextColors(
                     Color.parseColor(color),
                     Color.parseColor("#FFFFFFFF")
                 )
             }
-            "اعمال" -> {
-                binding.tabLayout.setSelectedTabIndicator(R.drawable.business_background)
-                binding.tabLayout.setTabTextColors(
-                    Color.parseColor(color),
-                    Color.parseColor("#FFFFFFFF")
-                )
-            }
-            "Science" -> {
+            "Science", "علوم" -> {
                 binding.tabLayout.setSelectedTabIndicator(R.drawable.science_background)
                 binding.tabLayout.setTabTextColors(
                     Color.parseColor(color),
                     Color.parseColor("#FFFFFFFF")
                 )
             }
-            "علوم" -> {
-                binding.tabLayout.setSelectedTabIndicator(R.drawable.science_background)
-                binding.tabLayout.setTabTextColors(
-                    Color.parseColor(color),
-                    Color.parseColor("#FFFFFFFF")
-                )
-            }
-            "Technology" -> {
-                binding.tabLayout.setSelectedTabIndicator(R.drawable.technology_background)
-                binding.tabLayout.setTabTextColors(
-                    Color.parseColor(color),
-                    Color.parseColor("#FFFFFFFF")
-                )
-            }
-            "تكنولوجيا" -> {
+            "Technology","تكنولوجيا" -> {
                 binding.tabLayout.setSelectedTabIndicator(R.drawable.technology_background)
                 binding.tabLayout.setTabTextColors(
                     Color.parseColor(color),
@@ -241,35 +203,22 @@ class Home : Fragment(R.layout.fragment_home) {
 
     fun setUnselectedItemColor(size: Int) {
         when (category) {
-            "Sports" -> {
+            "Sports","رياضة" -> {
                 setShape(R.drawable.sports_border, size)
             }
-            "رياضيات" -> {
-                setShape(R.drawable.sports_border, size)
-            }
-            "Business" -> {
+            "Business","أعمال" -> {
                 setShape(R.drawable.business_border, size)
             }
-            "أعمال" -> {
-                setShape(R.drawable.business_border, size)
-            }
-            "Science" -> {
+            "Science","علوم" -> {
                 setShape(R.drawable.science_border, size)
             }
-            "علوم" -> {
-                setShape(R.drawable.science_border, size)
-            }
-            "Technology" -> {
+            "Technology","تكنولوجيا" -> {
                 setShape(R.drawable.technology_border, size)
             }
-            "تكنولوجيا" -> {
-                setShape(R.drawable.technology_border, size)
-            }
-
         }
     }
     fun setShape(shape: Int, size: Int) {
-        for (indx in 0..size - 1) {
+        for (indx in 0 until size) {
             val tab: TabLayout.Tab? = binding.tabLayout.getTabAt(indx)
             tab?.view?.background = resources.getDrawable(shape)
             tab?.view?.setPadding(50, 0, 50, 0)

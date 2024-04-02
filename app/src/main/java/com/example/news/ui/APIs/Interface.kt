@@ -1,12 +1,12 @@
 package com.example.news.ui.APIs
 
-import com.example.news.ui.ui.Home
+import com.example.news.ui.ui.HomeFragment
 import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface Interface {
     @GET("sources")
-    fun getSources(@Query("category")category:String,@Query("apiKey")apiKey:String,@Query("language")language:String= Home.language):retrofit2.Call<SourcesDataClass>
+    fun getSources(@Query("category")category:String,@Query("apiKey")apiKey:String,@Query("language")language:String= HomeFragment.language):retrofit2.Call<SourcesDataClass>
     @GET("everything")
     fun getArticles(@Query("sources")category:String?,@Query("apiKey")apiKey:String):retrofit2.Call<PostDataClass>
     @GET("everything")

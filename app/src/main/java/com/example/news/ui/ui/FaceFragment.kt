@@ -14,7 +14,7 @@ import androidx.navigation.Navigation
 import com.example.news.R
 import com.example.news.databinding.FragmentFaceBinding
 
-class Face : Fragment(R.layout.fragment_face) {
+class FaceFragment : Fragment(R.layout.fragment_face) {
     private lateinit var binding: FragmentFaceBinding
     private lateinit var navController: NavController
 

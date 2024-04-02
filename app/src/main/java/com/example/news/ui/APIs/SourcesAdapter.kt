@@ -1,20 +1,9 @@
 package com.example.news.ui.APIs
 
-import android.graphics.Color
-import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
-import androidx.recyclerview.widget.RecyclerView
-import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.example.news.R
-import com.example.news.databinding.SourcesModelBinding
-import com.example.news.ui.ui.Categories
-import com.example.news.ui.ui.Categories.Companion.category
-import com.example.news.ui.ui.Categories.Companion.color
+import com.example.news.ui.ui.CategoriesFragment.Companion.color
 
 
 

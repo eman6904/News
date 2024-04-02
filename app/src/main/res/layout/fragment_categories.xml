@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    tools:context=".ui.ui.Home">
+    tools:context=".ui.ui.HomeFragment">
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -62,12 +62,30 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="1.0">
 
-                        <ImageView
-                            android:id="@+id/sports"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/sports_pic3" />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:weightSum="4"
+                            android:gravity="center"
+                            android:orientation="vertical">
+                                <ImageView
+                                    android:id="@+id/sports"
+                                    android:layout_weight="4"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:padding="@dimen/_23sdp"
+                                    android:scaleType="centerCrop"
+                                    android:src="@drawable/sports_icon" />
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="0.5"
+                                    android:text="@string/sports"
+                                    android:gravity="center"
+                                    android:textStyle="bold"
+                                    android:textSize="@dimen/_15sdp">
+                                </TextView>
+                        </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="@dimen/_130sdp"
@@ -86,11 +104,30 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="1.0">
 
-                        <ImageView
-                            android:id="@+id/technology"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/technology_pic2" />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:weightSum="4"
+                            android:gravity="center"
+                            android:orientation="vertical">
+                                <ImageView
+                                    android:id="@+id/technology"
+                                    android:layout_weight="4"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:padding="@dimen/_20sdp"
+                                    android:scaleType="centerCrop"
+                                    android:src="@drawable/tec_icon" />
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="0.5"
+                                    android:text="@string/technology"
+                                    android:gravity="center"
+                                    android:textStyle="bold"
+                                    android:textSize="@dimen/_15sdp">
+                                </TextView>
+                        </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
         </LinearLayout>
         <LinearLayout
@@ -108,7 +145,7 @@
                     app:cardMaxElevation="10dp"
                     app:cardPreventCornerOverlap="true"
                     app:cardUseCompatPadding="true"
-                    app:cardBackgroundColor="#283593"
+                    app:cardBackgroundColor="#7E2EAF"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintLeft_toLeftOf="parent"
@@ -116,11 +153,30 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="1.0">
 
-                        <ImageView
-                            android:id="@+id/science"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/science_pic" />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:weightSum="4"
+                            android:gravity="center"
+                            android:orientation="vertical">
+                                <ImageView
+                                    android:id="@+id/science"
+                                    android:layout_weight="4"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:padding="@dimen/_20sdp"
+                                    android:scaleType="centerCrop"
+                                    android:src="@drawable/scin_icon" />
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="0.5"
+                                    android:text="@string/science"
+                                    android:gravity="center"
+                                    android:textStyle="bold"
+                                    android:textSize="@dimen/_15sdp">
+                                </TextView>
+                        </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="@dimen/_130sdp"
@@ -139,11 +195,30 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="1.0">
 
-                        <ImageView
-                            android:id="@+id/business"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/business_pic" />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:weightSum="4"
+                            android:gravity="center"
+                            android:orientation="vertical">
+                                <ImageView
+                                    android:id="@+id/business"
+                                    android:layout_weight="4"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:padding="@dimen/_20sdp"
+                                    android:scaleType="centerCrop"
+                                    android:src="@drawable/busin_icon" />
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="0.5"
+                                    android:text="@string/business"
+                                    android:gravity="center"
+                                    android:textStyle="bold"
+                                    android:textSize="@dimen/_15sdp">
+                                </TextView>
+                        </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
         </LinearLayout>
         </LinearLayout>

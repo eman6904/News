@@ -9,9 +9,11 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class ViewModel:ViewModel(){
+
     val sourcesList = MutableLiveData<SourcesDataClass>()
     val postsList = MutableLiveData<com.example.news.ui.APIs.PostDataClass>()
     val postsListOfResult= MutableLiveData<com.example.news.ui.APIs.PostDataClass>()
+
     fun getSources(articleName:String): LiveData<SourcesDataClass> {
         ImplementationClass().getSources(articleName)
             .enqueue(object : Callback<SourcesDataClass> {
@@ -24,6 +26,7 @@ class ViewModel:ViewModel(){
             })
         return sourcesList
     }
+
     fun getPosts(id:String): LiveData<com.example.news.ui.APIs.PostDataClass> {
         ImplementationClass().getArticles(id)
             .enqueue(object :Callback<com.example.news.ui.APIs.PostDataClass>{
@@ -37,6 +40,7 @@ class ViewModel:ViewModel(){
             })
         return postsList
     }
+
     fun getResult(endPoint:String): LiveData<com.example.news.ui.APIs.PostDataClass> {
         ImplementationClass().getResultsOfSearch(endPoint)
             .enqueue(object :Callback<com.example.news.ui.APIs.PostDataClass>{
@@ -50,4 +54,5 @@ class ViewModel:ViewModel(){
             })
         return postsListOfResult
     }
+
 }

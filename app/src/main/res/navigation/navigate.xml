@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/face"
-        android:name="com.example.news.ui.ui.Face"
+        android:name="com.example.news.ui.ui.FaceFragment"
         android:label="fragment_face"
         tools:layout="@layout/fragment_face" >
         <action
@@ -19,7 +19,7 @@
     </fragment>
     <fragment
         android:id="@+id/home2"
-        android:name="com.example.news.ui.ui.Home"
+        android:name="com.example.news.ui.ui.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
@@ -37,7 +37,7 @@
     </fragment>
     <fragment
         android:id="@+id/categories"
-        android:name="com.example.news.ui.ui.Categories"
+        android:name="com.example.news.ui.ui.CategoriesFragment"
         android:label="Categories" >
         <action
             android:id="@+id/action_categories_to_home2"
@@ -45,12 +45,12 @@
     </fragment>
     <fragment
         android:id="@+id/post"
-        android:name="com.example.news.ui.ui.SelectedArticle"
+        android:name="com.example.news.ui.ui.SelectedArticleFragment"
         android:label="fragment_post"
         tools:layout="@layout/fragment_post" />
     <fragment
         android:id="@+id/search"
-        android:name="com.example.news.ui.ui.Search"
+        android:name="com.example.news.ui.ui.SearchFragment"
         android:label="fragment_search"
         tools:layout="@layout/fragment_search" >
         <action
@@ -59,12 +59,12 @@
     </fragment>
     <fragment
         android:id="@+id/setting"
-        android:name="com.example.news.ui.ui.Settings"
+        android:name="com.example.news.ui.ui.SettingsFragment"
         android:label="fragment_setting"
         tools:layout="@layout/fragment_setting" />
     <fragment
         android:id="@+id/sourcesList"
-        android:name="com.example.news.ui.ui.Articles"
+        android:name="com.example.news.ui.ui.GetPostsFragment"
         android:label="fragment_sources_list"
         tools:layout="@layout/fragment_sources_list" >
         <action

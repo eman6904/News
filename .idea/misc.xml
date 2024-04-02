@@ -4,7 +4,9 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/CS/AndroidStudioProjects/News/app/src/main/res/drawable-anydpi/category.xml" value="0.188" />
+        <entry key="..\:/Users/CS/AndroidStudioProjects/News/app/src/main/res/drawable-anydpi/ic_arrow_drop_down.xml" value="0.1965" />
         <entry key="..\:/Users/CS/AndroidStudioProjects/News/app/src/main/res/drawable-anydpi/menuu2.xml" value="0.222" />
+        <entry key="..\:/Users/CS/AndroidStudioProjects/News/app/src/main/res/drawable-anydpi/search_icon.xml" value="0.1965" />
         <entry key="..\:/Users/CS/AndroidStudioProjects/News/app/src/main/res/drawable-anydpi/setting.xml" value="0.1" />
         <entry key="..\:/Users/CS/AndroidStudioProjects/News/app/src/main/res/drawable/bordertextview.xml" value="0.219" />
         <entry key="..\:/Users/CS/AndroidStudioProjects/News/app/src/main/res/drawable/business_background.xml" value="0.1" />
@@ -31,10 +33,10 @@
         <entry key="..\:/Users/CS/AndroidStudioProjects/News/app/src/main/res/layout/article_model.xml" value="0.1" />
         <entry key="..\:/Users/CS/AndroidStudioProjects/News/app/src/main/res/layout/articlemodel.xml" value="0.23489583333333333" />
         <entry key="..\:/Users/CS/AndroidStudioProjects/News/app/src/main/res/layout/customview.xml" value="0.15579710144927536" />
-        <entry key="..\:/Users/CS/AndroidStudioProjects/News/app/src/main/res/layout/fragment_categories.xml" value="0.264" />
-        <entry key="..\:/Users/CS/AndroidStudioProjects/News/app/src/main/res/layout/fragment_face.xml" value="0.264" />
+        <entry key="..\:/Users/CS/AndroidStudioProjects/News/app/src/main/res/layout/fragment_categories.xml" value="0.1" />
+        <entry key="..\:/Users/CS/AndroidStudioProjects/News/app/src/main/res/layout/fragment_face.xml" value="0.25" />
         <entry key="..\:/Users/CS/AndroidStudioProjects/News/app/src/main/res/layout/fragment_header.xml" value="0.1" />
-        <entry key="..\:/Users/CS/AndroidStudioProjects/News/app/src/main/res/layout/fragment_home.xml" value="0.264" />
+        <entry key="..\:/Users/CS/AndroidStudioProjects/News/app/src/main/res/layout/fragment_home.xml" value="0.1" />
         <entry key="..\:/Users/CS/AndroidStudioProjects/News/app/src/main/res/layout/fragment_post.xml" value="0.22395833333333334" />
         <entry key="..\:/Users/CS/AndroidStudioProjects/News/app/src/main/res/layout/fragment_search.xml" value="0.2" />
         <entry key="..\:/Users/CS/AndroidStudioProjects/News/app/src/main/res/layout/fragment_setting.xml" value="0.23508771929824562" />

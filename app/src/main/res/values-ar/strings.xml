@@ -11,7 +11,7 @@
     <string name="categories">الأقسام</string>
     <string name="searchBtn">بحث</string>
     <string name="search">بحث</string>
-    <string name="sports">رياضيات</string>
+    <string name="sports">رياضة</string>
     <string name="business">أعمال</string>
     <string name="science">علوم</string>
     <string name="technology">تكنولوجيا</string>
@@ -23,4 +23,5 @@
     <string name="light_mode">مضئ</string>
     <string name="language">اللغة</string>
     <string name="mode">الوضع</string>
+    <string name="welcome2">مرحبا^^</string>
 </resources>

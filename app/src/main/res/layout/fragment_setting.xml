@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.ui.Settings"
+    tools:context=".ui.ui.SettingsFragment"
     style="@style/Theme.News"
     android:id="@+id/setting_fr"
     android:orientation="vertical">

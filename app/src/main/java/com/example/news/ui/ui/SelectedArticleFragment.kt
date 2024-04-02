@@ -9,7 +9,7 @@ import com.example.news.R
 import com.example.news.databinding.FragmentPostBinding
 
 
-class SelectedArticle : Fragment(R.layout.fragment_post) {
+class SelectedArticleFragment : Fragment(R.layout.fragment_post) {
     private lateinit var binding: FragmentPostBinding
     private lateinit var navController: NavController
 

@@ -4,22 +4,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/drawerLayout"
-    android:background="#FDFCFD"
     style="@style/Theme.News"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.ui.Face">
+    tools:context=".ui.ui.FaceFragment">
    <LinearLayout
        android:id="@+id/face_layout"
-       android:layout_width="match_parent"
-       android:layout_height="match_parent"
-       android:background="#F3EEF0"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
        android:gravity="center"
        android:orientation="vertical">
 
        <ImageView
            android:id="@+id/imageView"
-           android:layout_width="match_parent"
+           android:layout_width="wrap_content"
            android:layout_height="wrap_content"
-           android:src="@drawable/newsss" />
+           android:padding="@dimen/_110sdp"
+           android:src="@drawable/news_icon" />
    </LinearLayout>
 </androidx.drawerlayout.widget.DrawerLayout>
