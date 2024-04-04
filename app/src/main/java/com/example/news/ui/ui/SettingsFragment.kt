@@ -87,9 +87,10 @@ class SettingsFragment : Fragment(R.layout.fragment_setting), AdapterView.OnItem
                 if (modeOptions[position] == getString(R.string.dark_mode) ) {
 
                     var selectedMode = appMode.getString(SELECTED_MODE, null)
-                    if(selectedMode==null||selectedMode==getString(R.string.light_mode)) {
+                  //  Log.d("jjjjjjjjjjjjj",selectedMode.toString())
+                    if(selectedMode==null||selectedMode=="Light Mode") {
 
-                        appMode.edit().putString(SELECTED_MODE,getString(R.string.dark_mode)).apply()
+                        appMode.edit().putString(SELECTED_MODE,"Dark Mode").apply()
                         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
 
 
@@ -97,9 +98,9 @@ class SettingsFragment : Fragment(R.layout.fragment_setting), AdapterView.OnItem
                 } else{
                     var selectedMode = appMode.getString(SELECTED_MODE, null)
                     
-                    if(selectedMode==null||selectedMode==getString(R.string.dark_mode)) {
+                    if(selectedMode==null||selectedMode=="Dark Mode") {
 
-                        appMode.edit().putString(SELECTED_MODE,getString(R.string.light_mode)).apply()
+                        appMode.edit().putString(SELECTED_MODE,"Light Mode").apply()
                         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
                     }

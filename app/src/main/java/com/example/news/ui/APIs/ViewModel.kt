@@ -14,8 +14,8 @@ class ViewModel:ViewModel(){
     val postsList = MutableLiveData<com.example.news.ui.APIs.PostDataClass>()
     val postsListOfResult= MutableLiveData<com.example.news.ui.APIs.PostDataClass>()
 
-    fun getSources(articleName:String): LiveData<SourcesDataClass> {
-        ImplementationClass().getSources(articleName)
+    fun getSources(CategoryName:String): LiveData<SourcesDataClass> {
+        ImplementationClass().getSources(CategoryName)
             .enqueue(object : Callback<SourcesDataClass> {
                 override fun onResponse(call: Call<SourcesDataClass>, response: Response<SourcesDataClass>) {
                     sourcesList.postValue(response.body())
@@ -24,6 +24,7 @@ class ViewModel:ViewModel(){
                     Log.d("errror", t.message.toString())
                 }
             })
+        Log.d("sssssssssssssssss",sourcesList.value.toString())
         return sourcesList
     }
 

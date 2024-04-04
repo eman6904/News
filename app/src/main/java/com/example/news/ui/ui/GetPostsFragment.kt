@@ -27,20 +27,21 @@ class GetPostsFragment() : Fragment(R.layout.fragment_sources_list) {
 
         val activity = activity as MainActivity
         activity.supportActionBar?.hide()
-        viewModel.getPosts(sourceId)
-            .observe(viewLifecycleOwner, Observer { posts ->
-                if (posts.articles.size > 0) {
-                    val adapter = ArticlesAdapter(posts.articles)
-                    binding.ArticleRecycler.layoutManager = LinearLayoutManager(requireContext())
-                    binding.ArticleRecycler.adapter = adapter
-                    adapter.setOnClickListener(object :
-                        ArticlesAdapter.OnClickListener {
-                        override fun onClick(position: Int, model: PostComponents) {
-                            val url = bundleOf("url" to posts.articles[position].url)
-                            navController.navigate(R.id.action_home2_to_post, url)
-                        }
-                    })
-                }
-            })
-    }
+
+            viewModel.getPosts(sourceId)
+                .observe(viewLifecycleOwner, Observer { posts ->
+                    if (posts.articles.size > 0) {
+                        val adapter = ArticlesAdapter(posts.articles)
+                        binding.ArticleRecycler.layoutManager = LinearLayoutManager(requireContext())
+                        binding.ArticleRecycler.adapter = adapter
+                        adapter.setOnClickListener(object :
+                            ArticlesAdapter.OnClickListener {
+                            override fun onClick(position: Int, model: PostComponents) {
+                                val url = bundleOf("url" to posts.articles[position].url)
+                                navController.navigate(R.id.action_home2_to_post, url)
+                            }
+                        })
+                    }
+                })
+        }
 }

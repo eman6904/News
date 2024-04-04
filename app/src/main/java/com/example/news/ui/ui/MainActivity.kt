@@ -5,6 +5,7 @@ import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.preference.PreferenceManager
+import android.util.Log
 import androidx.appcompat.app.AppCompatDelegate
 import com.example.news.R
 import java.util.*
@@ -36,8 +37,11 @@ class MainActivity : AppCompatActivity() {
         }
 
         var selectedMode = appMode.getString(SELECTED_MODE, null)
-        if(selectedMode==getString(R.string.dark_mode))
+        if(selectedMode=="Dark Mode") {
+
+
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        }
         else
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
     }

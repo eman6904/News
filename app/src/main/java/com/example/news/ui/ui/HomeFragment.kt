@@ -4,6 +4,7 @@ package com.example.news.ui.ui
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
@@ -35,6 +36,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     companion object {
         var sourceId = ""
+
         var language = "en"
         var categoryName = ""
     }
@@ -46,7 +48,13 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         val activity = activity as MainActivity
         activity.supportActionBar?.hide()
 
+
+        val selectedLanguage=MainActivity.appLanguage.getString(MainActivity.SELECTED_LANGUAGE, null)
+        if(selectedLanguage!=null)
+            language=selectedLanguage
+
         if (category != "") {
+
             binding.title.setText(category)
             binding.startImage.isVisible = false
         }
@@ -109,7 +117,8 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         }
         binding.viewPager.adapter = adapter
         binding.tabLayout.setupWithViewPager(binding.viewPager)
-        setUnselectedItemColor(sourcesList.size)
+       setUnselectedItemColor(sourcesList.size)
+        setSelectedItemColor()
         binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 val position = tab!!.position
@@ -143,9 +152,16 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         when (CategoriesFragment.category) {
             "Sports","رياضة" -> {
                 binding.toolbar.setBackgroundResource(R.drawable.sports_toobar)
+                binding.tabLayout.setSelectedTabIndicator(R.drawable.sports_border)
+                binding.tabLayout.setTabTextColors(
+                    Color.parseColor("#FFFFFFFF"),
+                    Color.parseColor(color)
+                )
+
             }
             "Business","أعمال" -> {
                 binding.toolbar.setBackgroundResource(R.drawable.business_toolbar)
+
             }
             "Science","علوم" -> {
                 binding.toolbar.setBackgroundResource(R.drawable.science_toolbar)
@@ -177,7 +193,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                     Color.parseColor("#FFFFFFFF")
                 )
             }
-            "Business","اعمال"-> {
+            "Business","أعمال"-> {
                 binding.tabLayout.setSelectedTabIndicator(R.drawable.business_background)
                 binding.tabLayout.setTabTextColors(
                     Color.parseColor(color),
